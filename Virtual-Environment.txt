@@ -1,0 +1,48 @@
+Pip - python package manager (comes pre-installed with python)
+
+- not an environment isolation manager 
+- install all packages globally
+- view installed packages with pip list
+
+venv - python environment manager (comes pre-installed with python)
+
+- use pycharm to automatically create venv while creating projects
+- or use:
+  py -m venv env
+  where env is the folder name & when called with -m module-name, the given
+  module is located on the Python module path and executed as a script.
+- activate environment by navigating(use cd) to env/Scripts/activate
+- then normally install packages using pip install
+
+conda - python package and environment manager (need to install anaconda
+or minconda)
+
+- create environment using:
+  conda create --prefix ./env jupyterlab=0.35 matplotlib=3.1 numpy=1.16
+  ./env means create a new directorynamed env in this directory where
+  . means this directory / means create a new directory & env is the name. 
+
+- activate environment using:
+  conda activate ./env
+- install packages using conda install
+- to view avaialable environments:
+  conda env list 
+  it shows the activated environment with * sign
+- to view packagesin a activated environment:
+  conda list
+
+To add conda to system path
+
+- open anaconda prompt from windows search and write:
+  where conda
+- copy the second location without .exe file:
+  C:\Users\Md Rakib\miniconda3\Scripts
+- open run(Windows+R) and type sysdm.cpl
+- go to Advanced -> Environment Variables
+- In User window select Path and click edit
+- Then click new and add these two paths:
+  C:\Users\Md Rakib\miniconda3\Scripts
+  C:\Users\Md Rakib\miniconda3
+- Vola! conda commands can now be used with cmd.
+  
+  	

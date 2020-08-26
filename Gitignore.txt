@@ -1,0 +1,9 @@
+1. To exclude all files ending in .pyc use:
+   *.pyc
+2. To exclude all files ending in .log4j use:
+   *.log*
+   Here, 4j is just a representation. It can be any letter or number.
+3. To exclude all files in a specific path, such as the application 
+   venv directory. This will ignore the venv directory and everything 
+   within it.
+   /venv/*

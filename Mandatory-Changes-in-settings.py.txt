@@ -1,0 +1,37 @@
+Open settings.py and change the value from UTC to 
+the following:
+
+TIME_ZONE = 'Asia/Dhaka'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
+
+ALLOWED_HOSTS = ['sample2-django.herokuapp.com', '127.0.0.1']
+
+
+INSTALLED_APPS = [
+    'myapp',
+]
+
+
+TEMPLATES = [
+    {
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+    },
+]
+
+To add media files,
+In settings.py add the following commands:
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+Then in urls.py of the app add the following commands:
+
+First import:
+from django.conf.urls.static import static
+from django.conf import settings
+
+Then code:
+urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

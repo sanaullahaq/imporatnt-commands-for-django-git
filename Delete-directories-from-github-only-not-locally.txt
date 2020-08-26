@@ -1,0 +1,19 @@
+I committed and pushed some directory to github. After that, I altered the .gitignore file 
+adding a directory that should be ignored. Everything works fine, but the (now ignored) 
+directory stays on github.
+
+How do I delete that directory from github and the repository history?
+
+Use the following code:
+
+git rm -r --cached some-directory
+git commit -m 'Remove the now ignored directory "some-directory"'
+git push
+
+Explanation:
+
+git rm meanse you want to remove something.
+-r means recursive, necessary if you're doing with subdirectories inside. 
+--cached overrides git's normal behaviour of deleting them from the working directory 
+and staging the deletion for committing, and makes git only operate on the staging area 
+ready for committing. It's how you tell git you want to keep your local copies of the files. 

@@ -1,0 +1,7 @@
+1) GET method passes request parameter in URL String while POST method
+   passes the request parameter in request body.
+2) GET request can only pass limited amount of data while POST method 
+   can pass large amount of data to server.
+3) GET requests can be bookmarked and cached unlike POST requests.
+4) GET is mostly used for view purpose (e.g. SQL SELECT) while POST is 
+   mainly use for update purpose (e.g. SQL INSERT or UPDATE).

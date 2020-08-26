@@ -1,0 +1,61 @@
+I want to discard all changes done after commit <commit-hash> both
+locally and remotely and delete all histories also of these commits
+
+All changes wll be discarded untill now and you will be taken back 
+to that commit-hash locally
+
+ git reset --hard <commit-hash> 
+
+For doing it remotely also,
+
+ git push -f origin master
+
+where-f means to force pushes, origin is the remote name and master
+is the branch name.
+
+
+I want to go back to a previous commit by creating a new commit 
+keeping all histories. For this:
+
+git revert --no-commit <commit-hash>..HEAD
+git commit
+
+HEAD points to the latest commit of the current branch.
+This will revert everything from the HEAD back to the commit hash, 
+meaning it will recreate that commit state in the working tree as 
+if every commit after <commit-hash> had been walked back. You can then 
+commit the current tree, and it will create a brand new commit 
+essentially equivalent to the commit you "reverted" to.
+
+(The --no-commit flag lets git revert all the commits at once- 
+otherwise you'll be prompted for a message for each commit in the 
+range, littering your history with unnecessary new commits.)
+
+This is a safe and easy way to rollback to a previous state. 
+No history is destroyed, so it can be used for commits that have 
+already been made public.
+ 
+To revert commits from any ohter commits other than head:
+
+git revert --no-commit <commit-hash A>..<commit-hash B>
+git commit
+
+This will revert to commit-hash A without undoing any changes of A.
+It will undo changes of B and others in the middle.
+
+To revert the last two commits:
+
+git revert HEAD~2..HEAD
+
+This will undo changes of last two commits and take us to third last 
+commit.  
+
+To revert a merge commit
+
+git revert -m 1 <commit-hash>
+or,
+git revert -m 2 <commit-hash>
+
+To understand more on revert merge commits go to:
+https://stackoverflow.com/questions/7099833/
+how-to-revert-a-merge-commit-thats-already-pushed-to-remote-branch

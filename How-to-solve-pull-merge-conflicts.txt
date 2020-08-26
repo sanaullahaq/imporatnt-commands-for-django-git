@@ -1,0 +1,29 @@
+If git pull gives error due to merge conflicts as 
+there are unsaved changes in local repo, then do 
+the following:
+
+git stash (all unsaved local changes are pushed in
+           a stack/stash)
+
+git pull (pull everything from remote repo)
+
+git stash pop (pop the unsaved local changes)
+
+Now, the automerge tool will resolve conflicts 
+automatically.
+If there is still conflicts, then open editor and 
+resolve conflict manually
+
+<<<<<<<HEAD
+
+codes in local repo.
+
+===========
+
+changed codes in remote repo
+which came while pulling.
+
+>>>>>>>>
+
+Keep any one of the codes and delete the '<<<','>>>' 
+& '====' signs!

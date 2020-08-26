@@ -1,0 +1,36 @@
+ Creating Project and Git Integration
+
+1. Open PyCharm and create new project with venv
+2. Activate the environment by cd'ing to venv/Scripts/activate.bat in 
+   cmd of Pycharm
+3. pip install django
+4. django-admin startproject [project-name]
+5. cd to [project-name]
+6. Always change the root/top-level project folder name to 
+   [project-name]_project to avoid confusion of two same-name folders while importing!!!
+7. Ensure that you are in [project-name] folder & then
+   git init (creating .git for initialization)
+8. Create a .gitignore file in root directory using explorer or the following command:
+   cd. >.gitignore
+9. Add all the files that you want to be untracked.
+10.Then create a requirements file using:
+   pip freeze > requirements.txt
+11.git add. and git commit -m "Git Initialised with gitignore and requirements.txt"
+12.git remote add origin "repository url"
+13.git push -u origin master
+14. python manage.py startapp [app-name]
+15. In settings.py, add the [app-name] in the Installed Apps section.
+
+16. Create a folder templates inside the [project-name] directory and
+   add the following code in the Templates section of settings.py. 
+   'DIRS': [os.path.join(BASE_DIR,'templates')],
+
+17. python manage.py runserver (checks if the server is working)
+
+
+
+***
+Now work on project and update changes in remote repository by 
+git add . , git commit -m"" and git pull
+***
+

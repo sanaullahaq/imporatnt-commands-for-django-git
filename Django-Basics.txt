@@ -1,0 +1,37 @@
+
+{{}} - it is used to pull values of dictionaries or list from views.py
+to any html file.
+
+{% %} - it is used to do any sort of programming logic especially with
+if else statemtns and for loops.
+
+After writing code for model and creating the model from django-admin 
+if we want to add a newfield to the model then specify null=True or add
+default value as parameter of the field. Also if there is any error, then 
+remove the field and makemigrations and migrate. Then add field and again 
+makemigrations and migrate to solve the problem.
+
+NULL vs BLANK
+
+Field.null
+
+If True, Django will store empty values as NULL in the database. Default is False.
+
+Note that empty string values will always get stored as empty strings, not as NULL. 
+Only use null=True for non-string fields such as integers, booleans and dates. 
+For both types of fields, you will also need to set blank=True if you wish to permit
+empty values in forms, as the null parameter only affects database storage (see blank).
+Avoid using null on string-based fields such as CharField and TextField unless you have 
+an excellent reason. If a string-based field has null=True, that means it has two possible
+values for “no data”: NULL, and the empty string. In most cases, it’s redundant to have 
+two possible values for “no data;” Django convention is to use the empty string, not NULL.
+
+Field.blank
+
+If True, the field is allowed to be blank. Default is False.
+
+Note that this is different than null. null is purely database-related, whereas blank is 
+validation-related. If a field has blank=True, validation on Django’s admin site will allow entry of an empty value. 
+If a field has blank=False, the field will be required.
+
+

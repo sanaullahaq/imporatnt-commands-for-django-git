@@ -1,0 +1,7 @@
+1. You have created a new repository, added a few commits to it, 
+   and now you are trying to pull from a remote repository that 
+   already has some commits of its own. Git will throw the 
+   error in this case, since it has no idea how the two projects 
+   are related.Solve it by pulling with the follwing command 
+   instead of git pull only:
+   git pull origin master --allow-unrelated-histories

@@ -1,0 +1,13 @@
+1. Open cmd in get-pip.py directory by typing cmd on browse location.
+
+2. Type the following command: 
+   
+   python get-pip.py
+
+3. Vola! pip installed. Check version using:
+
+   pip --version
+
+4. Update pip using:
+   
+   python -m pip install --upgrade pip

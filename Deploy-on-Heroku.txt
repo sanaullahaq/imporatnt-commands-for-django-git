@@ -1,0 +1,94 @@
+Deployment in Heroku Server (only design not db)
+
+1. Create an app on Heroku and connect with Github repository.
+(don't deploy manually or enable automatic deploy yet)
+2. In Pycharm, activate env and pip install whitenoise and gunicorn
+3. Create runtime.txt on [project-name] directory with "python-3.7.8" 
+4. Create requirements.txt on [project-name] directory with 
+   pip freeze > requirements.txt
+5. Create procfile with "cd. > Procfile" and add the following command
+   web: gunicorn mysite.wsgi --log-file - 
+   where 'mysite' is the second directory inside the project where
+   wsgi.py exists.
+
+   If in your repo, your project is in another directory then,
+
+   web: gunicorn --pythonpath [Directory Name] mysite.wsgi --log-file -
+   
+   Remember, that the Procfile is simply used by Heroku to start processes. In this case, gunicorn processes.
+   Gunicorn's --pythonpath argument allows you to dynamically attach a directory to the list of directories 
+   that the Python runtime searches for when do module look-ups.
+   By adding --pythonpath Directory Name to the gunicorn command, the interpreter was basically 
+   told 'look inside of the directory for a package called mysite which contains a module called wsgi.
+
+6. git add . , git commit -m"", git push
+7. open settings.py
+8. 4 changes:
+   a. ALLOWED_HOSTS = ['sample2-django.herokuapp.com', '127.0.0.1']
+      Instead of 'sample2-django.herokuapp.com' here will insert our
+      app host which is in Heroku -> App-Name -> open app.
+
+   b. Debug = False (Don't do it if you want to show media files!!!)
+
+   c. At the bottom, add the follwing commands:
+      STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+      STATIC_URL = '/static/'
+      (This tells Heroku where the static files are so that it can act 
+      with Whitenoise. When we use python manage.py collectstatic, a 
+      staticfiles directory with all of our static contents will be created)
+
+   d. Add 'whitenoise.middleware.WhiteNoiseMiddleware', in MIDDLEWARE 
+      section so that heroku can use whitenoise to act upon static
+      files.
+     
+11. Finally, git add . , git commit -m"", git push
+12. Then enable automatic deloy on heroku site.
+13. If there is error code = H14 "No process running" check overview section 
+    of heroku app site and see if in dyno formation section
+    "web: gunicorn mysite.wsgi --log-file -"
+    is turned ON or OFF. If OFF turn it ON by editing.
+ 
+
+
+Connect live-website with Postgrey Database of Heroku so that it can be accessed live 
+from anywhere in the world.
+
+1. pip install dj-database-url
+
+2. pip install psycopg2
+
+3. pip freeze > requirements.txt
+
+4. Next in settings.py paste the following command
+   import dj_database_url
+   db_from_env = dj_database_url.config(conn_max_age=600)
+   DATABASES['default'].update(db_from_env)
+
+5. Then run the command below to migrate changes from local db to remote db:
+   
+   heroku run python manage.py migrate -a, --app [app-name on heroku]
+
+6. Finally, git add . , git commit -m"", git push
+
+7. To view your postgress database remotely go to https://datazenit.com/heroku-data-explorer.html?tp=hde#/
+
+8. Or fire up pgadmin and create a server with all the credentials of heroku.
+
+9. Don't forget add the db name & password in advanced tab to avoid all db from heroku to be loaded.
+
+Connect the local website with postgress database of heroku
+
+1. open settings.py and db credentials on heroku.com
+
+2. Paste the follwing commands in settings.py in Database Section collecting info from heroku
+   DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd24tbq25d3nsjk',
+        'USER': 'nlrzuezlohannl',
+        'PASSWORD': '1e8ab00ecc70b7cdf795078a0763de781031027cf3eb443afb5e57031738d6d8',
+        'HOST': 'ec2-34-206-31-217.compute-1.amazonaws.com',
+        'PORT':  '5432'
+    }
+
+3. All set! We are good to go!!

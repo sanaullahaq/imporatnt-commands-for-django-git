@@ -1,0 +1,22 @@
+To view log:
+
+git log
+
+To view log in one line:
+
+git log --oneline
+
+To compare two commits:
+
+git diff <old-commit> <new-commit>
+
+To visit a commit:
+
+git checkout <commit-hash>
+
+To visit a commit and make further commits:
+
+git checkout -b old-state <commit-hash>
+
+where -b means to create a new branch called old-state
+and then go to <commit-hash> so that you can push further commits.
