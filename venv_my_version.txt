@@ -1,0 +1,16 @@
+py -m venv venv
+cd venv/Scripts
+activate.bat
+
+goto the directory of requirements.txt, then
+pip install -r requiremnets.txt
+
+then open the project in pycham
+again
+
+cd venv/Scripts
+activate.bat
+
+database migration if needed
+
+then runserver
