@@ -1,0 +1,11 @@
+git branch new-branch
+git checkout new-branch
+
+#---write some code---
+
+git add .
+git commit -m"-----"
+git checkout master
+git merge new-branch
+git push
+git branch -d new branch
